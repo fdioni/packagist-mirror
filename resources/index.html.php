@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Packagist Mirror</title>
 
-        <link rel="shortcut icon" href="./favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/2.3.7/mini-default.min.css" />
-        <link rel="author" href="https://github.com/Webysther/packagist-mirror"/>
         <style>
             body { font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif; }
             .title { text-align: center}
-
             @media screen and (min-width: 768px) {
                 h1 { font-size: 500% }
                 h1 > img { width: 10%; }
@@ -38,27 +36,19 @@
             }
         </style>
 
-        <?php if (!empty($googleAnalyticsMainId) || !empty($googleAnalyticsId)) {?>
+
+        <?php if (!empty($googleAnalyticsId)): ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?=$googleAnalyticsMainId ?: $googleAnalyticsId?>"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=<?=$googleAnalyticsId?>"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-
             function gtag() {
                 dataLayer.push(arguments);
             }
-
             gtag('js', new Date());
-
-            <?php if (!empty($googleAnalyticsMainId)) {?>
-            gtag('config', '<?=$googleAnalyticsMainId?>');
-            <?php }?>
-
-            <?php if (!empty($googleAnalyticsId)) {?>
             gtag('config', '<?=$googleAnalyticsId?>');
-            <?php }?>
         </script>
-        <?php }?>
+        <?php endif ?>
 
     </head>
     <body>
@@ -68,31 +58,27 @@
                     <div class="title">
                         <h1>
                             Packagist Mirror
-                            <img src="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.3/flags/4x3/<?= $countryCode; ?>.svg"
-                                    title="<?= $countryName; ?>"
-                                    alt="<?= $countryName; ?>"
-                                    class="img-valign"
-                                    />
+                            <img src="flag.jpg" class="img-valign"/>
                         </h1>
-                        <p>
-                            <?= $tz; ?>
-                            <br>
-                            <span id="lastsynced" ></span>
-                            <br>
-                            <?php if ($synced > 0) {?>(Synchronized every <?= $synced ?> seconds)<?php }?>
-                            <?php if ($synced == 0) {?>(Synchronized continuously)<?php }?>
-                        </p>
+                        <p><span id="lastsynced" ></span><br>(Synchronized every <?= $synced ?> seconds)</p>
                     </div>
                     <p>
-                        This is PHP package repository Packagist.org mirror site.
+                        This is a mirror site of Packagist, PHP package repository.
                     </p>
                     <p>
-                        If you're using PHP Composer, commands like <mark class="default">create-project</mark>, <mark class="default">require</mark>, <mark class="default">update</mark>, <mark class="default">remove</mark> are often used.
-                        When those commands are executed, Composer will download information from the packages that are needed also from dependent packages. The number of json files downloaded depends on the complexity of the packages which are going to be used.
-                        The further you are from the location of the packagist.org server, the more time is needed to download json files. By using mirror, it will help save the time for downloading because the server location is closer.
+                        If you're using Composer, commands like <mark class="default">create-project</mark>,
+                        <mark class="default">require</mark>, <mark class="default">update</mark>,
+                        <mark class="default">remove</mark> are often used.
+                        When those commands are executed, Composer downloads the JSON file containing the package
+                        information from Packagist, and downloads the necessary packages and the JSON files of the
+                        packages that depend on them. Depending on the complexity of the package, you can download
+                        dozens or hundreds of JSON files. The further you are from the location of the Packagist
+                        server, the more time is needed to download those JSON files. By using mirror, it will help
+                        save the time for downloading because the server location is closer.
                     </p>
                     <p>
-                        Please do the following command to change the PHP Composer config to use this site as default Composer repository.
+                        Please do the following command to change the Composer config to use this site
+                        as default Composer repository.
                     </p>
                     <div class="tabs stacked">
                         <input type="radio" name="accordion" id="enable" checked aria-hidden="true">
@@ -100,7 +86,10 @@
                         <div>
                             <p class="bash" >
                                 $ <span id="enablingStep"></span>
-                                <button class="small tertiary ctclipboard" data-clipboard-target="#enablingStep"><img class="clippy" width="13" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clippy.svg" alt="Copy to clipboard"> Copy</button>
+                                <button class="small tertiary ctclipboard" data-clipboard-target="#enablingStep">
+                                    <img class="clippy" width="13" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/clippy.svg" alt="Copy to clipboard">
+                                    Copy
+                                </button>
                             </p>
                         </div>
                         <input type="radio" name="accordion" id="disable"aria-hidden="true">
@@ -108,53 +97,50 @@
                         <div>
                             <p class="bash" >
                                 $ <span id="disablingStep"></span>
-                                <button class="small tertiary ctclipboard" data-clipboard-target="#disablingStep"><img class="clippy" width="13" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/8.5.0/svg/clippy.svg" alt="Copy to clipboard"> Copy</button>
+                                <button class="small tertiary ctclipboard" data-clipboard-target="#disablingStep">
+                                    <img class="clippy" width="13" src="https://cdnjs.cloudflare.com/ajax/libs/octicons/4.4.0/svg/clippy.svg" alt="Copy to clipboard">
+                                    Copy
+                                </button>
                             </p>
                         </div>
                     </div>
 
-                    <h2>World Map of all mirrors</h2>
-                        <p>
-                            All mirrors, the colors represent <a href="https://packagist.com.br/network.svg" target="_blank">the topology</a> drawn here. Check <a href="https://status.packagist.com.br" target="_blank">status page</a> for health mirror's.
-                        </p>
-                        <a href="https://packagist.com.br/world_map.svg" target="_blank">
-                            <center>
-                                <img
-                                src="https://packagist.com.br/world_map.svg"
-                                alt="World Map with all mirrors"
-                                width="80%" />
-                            </center>
-                        </a>
-
                     <h2>Disclaimer</h2>
-                    <p>This site offers its services free of charge and only as a mirror site.</p>
-                    <p>This site only provides package information / metadata with no distribution file of the packages. All packages metadata files are mirrored from <a href="https://packagist.org/mirrors" target="_blank">packagist.org</a>. We do not modify and/or process the JSON files. If there is something wrong, please disable the setting the Disable command above and try to refer to the original packagist.org.</p>
+                    <p>
+                        This service is personally maintained by
+                        <a href="<?= $maintainerProfile ?>" target="_blank"><?= $maintainerMirror ?></a>.
+                        There is no charge for using the service, but since it is operated by a team,
+                        we cannot guarantee anything even if a failure occurs.
+                    </p>
+                    <p>
+                        This site only provides package information/metadata with no distribution file of the packages.
+                        All packages metadata files are mirrored from
+                        <a href="https://packagist.org" target="_blank">Packagist</a>.
+                        We do not modify and/or process the JSON files. If there is something wrong,
+                        please disable the setting using the Disable command above and
+                        try to refer to the original Packagist.</p>
                 </div>
             </div>
         </div>
         <footer class="row">
             <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
                 <p>
-                    <b>Packagist Mirror</b> was built from <?= $countryName ?> by
-                    <a href="<?= $maintainerProfile ?>" target="_blank"><?= $maintainerMirror ?></a>.
+                    Copyright &copy; <?= date('Y') ?> <a href="<?= $maintainerProfile ?>" target="_blank"><?= $maintainerMirror ?></a>.
                 </p>
                 <p>
-                    It is licensed under the <a href="<?= $maintainerRepo ?>/blob/master/LICENSE" target="_blank"><?= $maintainerLicense ?></a>.
-                    You can view the project's source code on <a href="<?= $maintainerRepo ?>" target="_blank">GitHub</a>.
+                    Licensed under the <a href="<?= $maintainerRepo ?>/blob/master/LICENSE" target="_blank"><?= $maintainerLicense ?></a>.
+                    You can view the source code of this project on <a href="<?= $maintainerRepo ?>" target="_blank">GitHub</a>.
                 </p>
             </div>
         </footer>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.26/moment-timezone-with-data-2012-2022.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.17/moment-timezone-with-data-2012-2022.min.js"></script>
         <script>
             // set text of the command
             document.getElementById('enablingStep').innerText = 'composer config -g repos.packagist composer '+ window.location.origin;
             document.getElementById('disablingStep').innerText = 'composer config -g --unset repos.packagist';
-            var lastsynced = document.getElementById('lastsynced');
-
             new ClipboardJS('.ctclipboard');
-
             function fetchHeader(url, wch) {
                 try {
                     var req=new XMLHttpRequest();
@@ -162,20 +148,17 @@
                     req.onload = function (e) {
                         var responseHeader = req.getResponseHeader(wch);
                         var actual = moment.tz(responseHeader, '<?=$tz; ?>');
-                        var format = 'YYYY-MM-DD HH:mm:ss ZZ';
+                        var format = 'YYYY/MM/D HH:mm:ss ZZ';
+                        var lastsynced = document.getElementById('lastsynced');
                         lastsynced.innerText = 'Last sync: '+actual.format(format);
                     };
                     req.send(null);
                 } catch(er) {}
             }
-
-            if(location.hostname !== ''){
+            fetchHeader(location.href,'Last-Modified');
+            setInterval(function(){
                 fetchHeader(location.href,'Last-Modified');
-                setInterval(function(){
-                    fetchHeader(location.href,'Last-Modified');
-                }, (<?=$synced ?>000+1000));
-            }
+            }, (<?= $synced ?>000));
         </script>
-        <!-- Since: <?=$since ?> -->
     </body>
 </html>
