@@ -9,19 +9,23 @@
 [![Quality Score](https://goo.gl/3LwbA1)](https://scrutinizer-ci.com/g/Webysther/packagist-mirror)
 [![Mentioned in Awesome composer](https://awesome.re/mentioned-badge.svg?style=flat-square)](https://github.com/jakoch/awesome-composer#packagist-mirrors)
 
-This repository make possible to you create a metadata mirror and keep in sync with [packagist.org](packagist.org).
+❤️ [Recommended by packagist.org](https://packagist.org/mirrors) ❤️
+
+## Announcement: [Composer 2 is now available!](https://blog.packagist.com/composer-2-0-is-now-available/)
+
+**This mirror is for Composer 1; Composer 2 is very fast on its own. We will update to support the version 2 for those need solve the slow internet access or availability problem with the main repository.**
+
+A mirror for [packagist.org](packagist.org) that regularly caches packages from one or more main mirrors to add to a distributed package repository.
 
 ![Mirror creation](/resources/public/logo.svg)
 
-❤️ [Recommended by packagist.org](https://packagist.org/mirrors) ❤️
-
-If you're using [PHP Composer](https://getcomposer.org/), commands like *create-project*, *require*, *update*, *remove* are often used. When those commands are executed, Composer will download information from the packages that are needed also from dependent packages. The number of json files downloaded depends on the complexity of the packages which are going to be used. The further you are from the location of the [packagist.org](packagist.org) server, the more time is needed to download json files. By using mirror, it will help save the time for downloading because the server location is closer.
+If you're using [PHP Composer](https://getcomposer.org/), commands like *create-project*, *require*, *update*, *remove* are often used. When those commands are executed, Composer will download information from the packages that are needed also from dependent packages. The number of json files downloaded depends on the complexity of the packages which are going to be used. The further you are from the location of the [packagist.org](packagist.org) server, the more time is needed to download json files. By using a mirror, it will save you time when downloading json because the server location is closer.
 
 ## ⚙️ How it works?
 
-This project aims to create a local mirror with ease, allowing greater availability for companies/countries that want to use the composer but do not want to depend on the infrastructure of third parties. It is also possible to create a public mirror to reduce the load on the main repository and allow a better distribution of requests around the world, help us creating a public mirror!
+This project aims to create a local mirror with ease, allowing greater availability for companies/countries that want to use composer without depending on the infrastructure of third parties. It is also possible to create a public mirror to reduce the load on the main repository and better distribute requests around the world, helping make the packagist ecosystem faster as a whole!
 
-When creating your local copy the child mirror (you) adds a list of other mirrors to use when creating your own mirror, if any mirror fails to deliver the metadata file the client automatically fetches the original file from the main mirror, could be packagist.org or even another. If you lose your connection to the server or any other problem that prevents you from continuing is okay, it can return from where it stopped running. After the mirror is created, the next runs will only look for the main mirror delta optimally and efficiently.
+When creating a mirror, you add a list of other mirrors to use for initial sync, which pulls all packages to your local machine.   After the mirror is created and synced, the next runs will only pull updates.  If any mirror fails to deliver a metadata file, the client will fallback to its configured main mirror, whether that be packagist.org or otherwise. If the client encounters an installation problem or loses connection to a mirror, it can return from where it stopped running.
 
 ![Mirror creation](/resources/public/mirror-creation.gif)
 
@@ -29,7 +33,7 @@ When creating your local copy the child mirror (you) adds a list of other mirror
 
 🛫 Amazing data mirrors used to download repositories metadata built using this [recommended repository](https://packagist.org/mirrors) or another:
 
-Theses lists are ordered by country and sync time.
+> Lists are ordered by country and sync frequency.
 
 | Location        | Mirror      | Maintainer | Github | Sync | Since |
 | ------|-----|-----|-----|-----|-----|
@@ -37,6 +41,10 @@ Theses lists are ordered by country and sync time.
 |China|[php.cnpkg.org](https://php.cnpkg.org)|[Eagle Wu](https://github.com/wudi)|[fork](https://github.com/cnpkg/packagist-mirror)|Every minute|[Q3'18](https://github.com/cnpkg/packagist-mirror/commits/master)
 |China|[packagist.mirrors.sjtug.sjtu.edu.cn](https://packagist.mirrors.sjtug.sjtu.edu.cn)|[Shanghai Jiao Tong University](https://github.com/sjtug)|[fork](https://github.com/sjtug/packagist-mirror)|Every hour|[Q2'19](https://github.com/sjtug/packagist-mirror/commits/master)
 |Czech Republic|[packagist.hostuj.to](https://packagist.hostuj.to)|[HOSTUJ TO](https://hostuj.to)|fork|Every 5 minutes|🆕Q1'20
+|Finland|[packagist.fi](https://packagist.fi)|[Niko Granö](https://xn--gran-8qa.fi)|fork|Continuously|🆕Q2'20
+|France|[packagist.fr](https://packagist.fr)|[Baptiste Pillot](https://github.com/baptistepillot)|[fork](https://github.com/bappli/packagist-mirror)|Every minute|🆕[Q4'20](https://github.com/bappli/packagist-mirror/commits/master)
+|Germany|[packagist.hesse.im](https://packagist.hesse.im)|[Benjamin Hesse](https://hesse.im)|[fork](https://github.com/42656e/packagist-mirror)|Every minute|🆕Q3'20
+|Germany|[composer.mg100.net](https://composer.mg100.net)|[Alex Gummenscheimer](https://github.com/MG-100)|[fork](https://github.com/MG-100/packagist-mirror)|Every minute|🆕Q1'21
 |India |[packagist.in](https://packagist.in) |[Varun Sridharan](https://github.com/varunsridharan)|fork|Every minute|[Q2'19](https://www.registry.in/whois)
 |India|[packagist.vrkansagara.in](https://packagist.vrkansagara.in/packages.json)|[Vallabh Kansagara](https://github.com/vrkansagara)|[fork](https://github.com/vrkansagara/packagist-mirror)|Every 5 minutes|[Q4'19](https://packagist.vrkansagara.in/packages.json)|
 |Indonesia|[packagist.phpindonesia.id](https://packagist.phpindonesia.id) |[Indra Gunawan](https://github.com/IndraGunawan)|fork|Every 30 seconds|[Q3'18](https://github.com/IndraGunawan/packagist-mirror/commits/master)
@@ -46,7 +54,9 @@ Theses lists are ordered by country and sync time.
 |South Africa|[packagist.co.za](https://packagist.co.za)|[SolidWorx](https://github.com/SolidWorx)|fork|Every 5 minutes|[Q3'18](http://co.za/cgi-bin/whois.sh?Domain=packagist.co.za&Enter=Enter)
 |South Korea|[packagist.kr](https://packagist.kr)|[PackagistKR](https://github.com/packagistkr)|[fork](https://github.com/packagistkr/packagist-mirror)|Every minute|[Q3'18](https://github.com/packagistkr/packagist-mirror/issues)
 |Thailand|[packagist.mycools.in.th](https://packagist.mycools.in.th)|[Jarak Kritkiattisak](https://github.com/mycools)|[fork](https://github.com/mycools/packagist-mirror)|Every 5 minutes|[Q4'19](https://github.com/mycools/packagist-mirror/commits/master)
-|USA|[packagist-mirror.wmflabs.org](https://packagist-mirror.wmflabs.org) |[Wikimedia](https://www.wikimedia.org/)|fork|Every 5 minutes|[Q3'18](https://phabricator.wikimedia.org/T203529)
+|USA|[packagist-mirror.wmcloud.org](https://packagist-mirror.wmcloud.org) |[Wikimedia](https://www.wikimedia.org/)|fork|Every 5 minutes|[Q3'18](https://phabricator.wikimedia.org/T203529)
+|Taiwan|[packagist.tw](https://packagist.tw) |[Peter](https://github.com/peter279k)|[fork](https://github.com/open-source-contributions/packagist-mirror)|Every 5 minutes|🆕Q2'20
+|Vietnam|[packagist.ondinh.net](https://packagist.ondinh.net/) |[Long Nguyen](https://github.com/olragon)|[main](https://github.com/Webysther/packagist-mirror)|Every 5 minutes|🆕Q3'20
 
 ⚠️ Not based on this [source code](https://github.com/Webysther/packagist-mirror):
 
@@ -71,22 +81,69 @@ Check [status page](https://status.packagist.com.br) for health mirror's.
 
 [![World Map](/resources/public/world_map.svg)](https://packagist.com.br/world_map.svg)
 
-The colors represent the topology drawn below, only show servers in better condition at country level.
+This map shows working mirrors from above at the country level. The colors represent the topology drawn below.
 
 ## 🚀 Create your own mirror
 
 [![Topology](/resources/public/network.svg)](https://packagist.com.br/network.svg)
 
-With docker and nginx:
+> 💡Tip: use a machine with at least 2GB of RAM to avoid using the disk or swap space during sync.
 
-The mirror creation save all data as .gz to save disk space and CPU, you need to enable reverse gz decode when a client ask for the decompressed version, normally used only for legacy composer clients.
+> ⚠️ When syncing from `DATA_MIRROR` or `MAIN_MIRROR`, your server encodes and decodes all packages as `.gz` files to save disk space.  You may need to enable server-side decoding for legacy composer clients that ask for decompressed packages.
 
-Change you [nginx configuration](https://www.nginx.com/resources/wiki/start/topics/examples/full/) of [*gzip_static*](http://nginx.org/en/docs/http/ngx_http_gunzip_module.html) and [*gunzip*](http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) as is:
+There are currently three supported methods for creating your own mirror.
 
-Create a website on a default nginx instalattion:
+- [Docker Compose](#docker-compose) - Fully automated solution using Docker Compose.
+- [Docker + Nginx + PHP](#docker-nginx-php) - Docker for cron jobs, Nginx + PHP on the host.
+- [Nginx + PHP](#nginx-php) - Cron + Nginx + PHP all running on the host.
+
+In all three methods, you need to clone the repository and copy `.env.example` to `.env` and modify to include your values instead of the defaults.
+
 ```bash
-sudo vim /etc/nginx/sites-available/packagist.com.br.conf
+# Clone this repository
+$ git clone https://github.com/websyther/packagist-mirror.git
+
+# Setup environment variables
+$ cd packagist-mirror
+$ cp .env.example .env
+$ nano .env
 ```
+
+### Docker Compose
+
+Run the following commands to start a container for Nginx, PHP-FPM, and a worker that runs cron jobs.
+
+```bash
+# Start all Docker containers
+$ docker-compose up -d
+
+# Follow log output
+$ docker-compose logs -f
+```
+
+Once the initial sync has finished, open https://localhost:9248 to see your site.
+
+> 💡Tip: Add `-f docker-compose.prod.yml` between `docker-compose` and `up` or `down` while running the above commands.  If you are using [traefik](https://traefik.io), the services in this docker-compose file contain labels used by a running traefik container to automatically route traffic matching those labels to that container.  It even auto-renews LetsEncrypt certificates for you.
+
+### Docker Nginx PHP
+
+First, add the following line to `/etc/crontab` to tell the host to start a container for the `packagist-mirror` image on boot, replacing the values for each `-e` flag with your own.  This will start the initial sync and generate the website files to be served by nginx.
+
+> Learn about more the available options for this docker image [here](https://github.com/Webysther/packagist-mirror-docker).
+
+```bash
+* * * * * root docker run --name mirror --rm -v /var/www:/public \
+-e MAINTAINER_REPO='packagist.com.br' \
+-e APP_COUNTRY_NAME='Brazil' \
+-e APP_COUNTRY_CODE='br' \
+-e MAINTAINER_MIRROR='Webysther' \
+-e MAINTAINER_PROFILE='https://github.com/Webysther' \
+-e MAINTAINER_REPO='https://github.com/Webysther/packagist-mirror' \
+-e URL='packagist.com.br' \
+webysther/packagist-mirror
+```
+
+Next, add the following to `/etc/nginx/sites-available/packagist.com.br.conf` to host the website files:
 
 ```bash
 server {
@@ -102,49 +159,28 @@ server {
 }
 ```
 
-💡Tip: use a machine with 2GB at least of memory, with that all metadata keep to the memory helping the nginx and disk to not be consumed at all.
-
-After install nginx edit `/etc/crontab`:
+To monitor sync progress, run the following command:
 
 ```bash
-* * * * * root docker run --name mirror --rm -v /var/www:/public \
--e MAINTAINER_REPO='packagist.com.br' \
--e APP_COUNTRY_NAME='Brazil' \
--e APP_COUNTRY_NAME='br' \
--e MAINTAINER_MIRROR='Webysther' \
--e MAINTAINER_PROFILE='https://github.com/Webysther' \
--e MAINTAINER_REPO='https://github.com/Webysther/packagist-mirror' \
--e URL='packagist.com.br' \
-webysther/packagist-mirror
-```
-to more options about image go to [docker repository](https://github.com/Webysther/packagist-mirror-docker).
-
-Put inside your `~/.*rc` (`~/.bashrc`/`~/.zshrc`/`~/.config/fish/config.fish`):
-```bash
-alias logs='watch -n 0.5 docker logs --tail 10 -t mirror'
+docker logs --follow --timestamps --tail 10 mirror
 ```
 
-Update your env vars and see monitoring packagist mirror creation:
-```bash
-source ~/.*rc
-logs
-```
+## Nginx PHP
 
-## 👷 Install 
-
-Using with [docker repository](https://github.com/Webysther/packagist-mirror-docker) or composer local:
+After cloning the repository, run the following commands to configure for your host.
 
 ``` bash
-$ git clone https://github.com/Webysther/packagist-mirror.git
 $ cd packagist-mirror && composer install
 $ cp .env.example .env
 ```
 
-Schedule the command to create and update the mirror:
+Then, schedule the command to create and update the mirror:
 
 ```bash
 $ php bin/mirror create -vvv
 ```
+
+Nginx will now serve your mirror at the configured URL.
 
 ## 🐧 Development & Contributing
 
@@ -187,10 +223,8 @@ $ vendor/bin/phpunit
 
 ## 💙 Other correlated projects
 
-- [prestissimo](https://github.com/hirak/prestissimo) Downloads packages in parallel to speed up the installation process.
+- [composer/mirror](https://github.com/composer/mirror) The official composer mirrorring script (used for official packagist.org mirrors)
 - [composer-mirror](https://github.com/zencodex/composer-mirror) Create a mirror (open sourced code but not maintained)
-- [packagist-mirror](https://github.com/IndraGunawan/packagist-mirror) Create a mirror (outdated)
-- [packagist-crawler](https://github.com/hirak/packagist-crawler) Create a mirror (outdated)
 - [composer-registry-manager](https://github.com/slince/composer-registry-manager) Easily switch to the composer repository you want
 - [packagist-bot](https://github.com/kawax/packagist-bot) Yet Another Packagist Mirror
 - [twity](https://github.com/julienj/twity) Provide a web based management of private and public composer packages.
